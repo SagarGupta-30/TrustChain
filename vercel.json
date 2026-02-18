@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/trustchain/frontend/index.html" },
+    { "source": "/index.html", "destination": "/trustchain/frontend/index.html" },
+    { "source": "/issue", "destination": "/trustchain/frontend/issue.html" },
+    { "source": "/verify", "destination": "/trustchain/frontend/verify.html" },
+    { "source": "/dashboard", "destination": "/trustchain/frontend/dashboard.html" },
+    { "source": "/issue.html", "destination": "/trustchain/frontend/issue.html" },
+    { "source": "/verify.html", "destination": "/trustchain/frontend/verify.html" },
+    { "source": "/dashboard.html", "destination": "/trustchain/frontend/dashboard.html" },
+    { "source": "/style.css", "destination": "/trustchain/frontend/style.css" },
+    { "source": "/script.js", "destination": "/trustchain/frontend/script.js" }
+  ]
+}
