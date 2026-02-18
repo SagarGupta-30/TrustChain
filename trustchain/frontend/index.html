@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TrustChain | Decentralized Digital Proofs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="home">
+    <div class="site-shell">
+      <header class="topbar glass rounded-xl fade-in">
+        <a class="brand" href="index.html"
+          >Trust<span class="brand-mark">Chain</span></a
+        >
+        <nav class="nav-links">
+          <a class="nav-link active" href="index.html">Home</a>
+          <a class="nav-link" href="issue.html">Issue Proof</a>
+          <a class="nav-link" href="verify.html">Verify</a>
+          <a class="nav-link" href="dashboard.html">Dashboard</a>
+        </nav>
+        <div class="endpoint-block">
+          <span>API:</span>
+          <span id="apiEndpointBadge" class="endpoint-value"></span>
+          <button id="apiConfigButton" class="btn btn-ghost" type="button">
+            API Settings
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero glass rounded-xl fade-in delay-1">
+          <p class="eyebrow">Algorand TestNet</p>
+          <h1>Decentralized Proof. Immutable Trust.</h1>
+          <p>
+            TrustChain anchors digital ownership and authenticity on Algorand.
+            Upload any important file, issue on-chain proof with SHA256 integrity,
+            mint a proof NFT, and verify records publicly in seconds.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="issue.html">Issue Proof</a>
+            <a class="btn btn-secondary" href="verify.html">Verify Document</a>
+          </div>
+          <div id="networkStatus" class="network-chip">Checking backend...</div>
+        </section>
+
+        <section class="section-grid feature-grid">
+          <article class="feature-card glass rounded-xl fade-in delay-1">
+            <h3>File Integrity</h3>
+            <p>
+              Every uploaded document receives a cryptographic SHA256 fingerprint
+              before submission to chain.
+            </p>
+          </article>
+          <article class="feature-card glass rounded-xl fade-in delay-2">
+            <h3>On-Chain Proof</h3>
+            <p>
+              TrustChain stores proof hash in Algorand transaction notes for
+              tamper-resistant timestamped records.
+            </p>
+          </article>
+          <article class="feature-card glass rounded-xl fade-in delay-3">
+            <h3>Proof NFT</h3>
+            <p>
+              Each issued proof mints a dedicated Algorand Standard Asset (ASA)
+              representing ownership evidence.
+            </p>
+          </article>
+        </section>
+
+        <section class="walkthrough glass rounded-xl fade-in delay-2">
+          <h2>How It Works</h2>
+          <ol class="steps">
+            <li>Upload your file and issue a proof transaction.</li>
+            <li>TrustChain hashes the file and records the hash on TestNet.</li>
+            <li>TrustChain mints a one-of-one ASA linked to that proof.</li>
+            <li>Anyone can verify the same file against the stored transaction.</li>
+          </ol>
+        </section>
+      </main>
+
+      <footer class="footer">TrustChain • Secure digital authenticity on Algorand</footer>
+    </div>
+
+    <div id="apiConfigModal" class="modal" aria-hidden="true">
+      <div class="modal-panel glass rounded-xl">
+        <div class="modal-header">
+          <h3>API Endpoint</h3>
+          <button id="closeApiModal" class="btn btn-ghost" type="button">
+            Close
+          </button>
+        </div>
+        <p class="page-description">
+          Use your backend base URL. Example:
+          <code>https://your-backend.onrender.com/api</code>
+        </p>
+        <form id="apiConfigForm">
+          <div class="form-group">
+            <label for="apiBaseInput">Backend API Base</label>
+            <input
+              id="apiBaseInput"
+              type="text"
+              placeholder="http://localhost:4000/api"
+              required
+            />
+          </div>
+          <button class="btn btn-primary" type="submit">Save Endpoint</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

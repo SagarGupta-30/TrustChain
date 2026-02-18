@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Document | TrustChain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="verify">
+    <div class="site-shell">
+      <header class="topbar glass rounded-xl fade-in">
+        <a class="brand" href="index.html"
+          >Trust<span class="brand-mark">Chain</span></a
+        >
+        <nav class="nav-links">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="issue.html">Issue Proof</a>
+          <a class="nav-link active" href="verify.html">Verify</a>
+          <a class="nav-link" href="dashboard.html">Dashboard</a>
+        </nav>
+        <div class="endpoint-block">
+          <span>API:</span>
+          <span id="apiEndpointBadge" class="endpoint-value"></span>
+          <button id="apiConfigButton" class="btn btn-ghost" type="button">
+            API Settings
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="page-header glass rounded-xl fade-in delay-1">
+          <h1>Public Authenticity Verification</h1>
+          <p>
+            Upload a file and provide a TrustChain transaction ID to validate
+            whether the content matches the on-chain hash.
+          </p>
+        </section>
+
+        <section class="page-content two-col">
+          <article class="card glass rounded-xl fade-in delay-1">
+            <h2>Verify Proof</h2>
+            <form id="verifyForm" novalidate>
+              <div class="form-group">
+                <label for="verifyFile">Document</label>
+                <input id="verifyFile" type="file" name="file" required />
+              </div>
+
+              <div class="form-group">
+                <label for="transactionId">Transaction ID</label>
+                <input
+                  id="transactionId"
+                  type="text"
+                  name="transactionId"
+                  placeholder="52-character Algorand transaction ID"
+                  required
+                />
+              </div>
+
+              <button id="verifySubmit" class="btn btn-primary" type="submit">
+                Verify Document
+              </button>
+              <div id="verifyStatus" class="inline-status" aria-live="polite"></div>
+            </form>
+          </article>
+
+          <article class="card glass rounded-xl fade-in delay-2">
+            <h2>Verification Result</h2>
+            <p>A positive match confirms file authenticity.</p>
+
+            <div id="verifyResult" class="result-card hidden">
+              <h3 id="verifyHeadline">-</h3>
+              <div class="result-list">
+                <div class="result-item">
+                  <span>Uploaded Hash</span>
+                  <code id="verifyUploadedHash">-</code>
+                </div>
+                <div class="result-item">
+                  <span>On-Chain Hash</span>
+                  <code id="verifyOnChainHash">-</code>
+                </div>
+                <div class="result-item">
+                  <span>Transaction ID</span>
+                  <code id="verifyTxId">-</code>
+                </div>
+              </div>
+            </div>
+
+            <div id="verifyEmpty" class="empty-state">No verification yet.</div>
+          </article>
+        </section>
+      </main>
+
+      <footer class="footer">TrustChain verification portal</footer>
+    </div>
+
+    <div id="apiConfigModal" class="modal" aria-hidden="true">
+      <div class="modal-panel glass rounded-xl">
+        <div class="modal-header">
+          <h3>API Endpoint</h3>
+          <button id="closeApiModal" class="btn btn-ghost" type="button">
+            Close
+          </button>
+        </div>
+        <form id="apiConfigForm">
+          <div class="form-group">
+            <label for="apiBaseInput">Backend API Base</label>
+            <input id="apiBaseInput" type="text" required />
+          </div>
+          <button class="btn btn-primary" type="submit">Save Endpoint</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | TrustChain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="dashboard">
+    <div class="site-shell">
+      <header class="topbar glass rounded-xl fade-in">
+        <a class="brand" href="index.html"
+          >Trust<span class="brand-mark">Chain</span></a
+        >
+        <nav class="nav-links">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="issue.html">Issue Proof</a>
+          <a class="nav-link" href="verify.html">Verify</a>
+          <a class="nav-link active" href="dashboard.html">Dashboard</a>
+        </nav>
+        <div class="endpoint-block">
+          <span>API:</span>
+          <span id="apiEndpointBadge" class="endpoint-value"></span>
+          <button id="apiConfigButton" class="btn btn-ghost" type="button">
+            API Settings
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="page-header glass rounded-xl fade-in delay-1">
+          <h1>Proof Dashboard</h1>
+          <p>Issued proof records and Algorand transaction activity from your issuer wallet.</p>
+        </section>
+
+        <section class="page-content">
+          <article class="stats-grid fade-in delay-1">
+            <div class="stat-card glass rounded-xl">
+              <p class="stat-label">Total Issued Proofs</p>
+              <p id="statProofCount" class="stat-value">0</p>
+            </div>
+            <div class="stat-card glass rounded-xl">
+              <p class="stat-label">Latest Transaction</p>
+              <p id="statLatestTx" class="stat-value">-</p>
+            </div>
+            <div class="stat-card glass rounded-xl">
+              <p class="stat-label">Issuer Address</p>
+              <p id="statIssuer" class="stat-value">-</p>
+            </div>
+          </article>
+
+          <article class="card glass rounded-xl fade-in delay-2">
+            <div class="modal-header">
+              <h2>Issued Proofs</h2>
+              <button id="refreshDashboard" class="btn btn-secondary" type="button">
+                Refresh
+              </button>
+            </div>
+            <div class="table-shell">
+              <table>
+                <thead>
+                  <tr>
+                    <th>File</th>
+                    <th>Hash</th>
+                    <th>Transaction</th>
+                    <th>Asset</th>
+                    <th>Issued At</th>
+                  </tr>
+                </thead>
+                <tbody id="proofsTableBody"></tbody>
+              </table>
+            </div>
+            <div id="proofsEmpty" class="empty-state hidden">No issued proofs yet.</div>
+          </article>
+
+          <article class="card glass rounded-xl fade-in delay-3">
+            <h2>Transaction History</h2>
+            <div class="table-shell">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Hash</th>
+                    <th>Asset</th>
+                    <th>Round</th>
+                  </tr>
+                </thead>
+                <tbody id="historyTableBody"></tbody>
+              </table>
+            </div>
+            <div id="historyEmpty" class="empty-state hidden">No transactions returned.</div>
+          </article>
+        </section>
+      </main>
+
+      <footer class="footer">TrustChain operational dashboard</footer>
+    </div>
+
+    <div id="apiConfigModal" class="modal" aria-hidden="true">
+      <div class="modal-panel glass rounded-xl">
+        <div class="modal-header">
+          <h3>API Endpoint</h3>
+          <button id="closeApiModal" class="btn btn-ghost" type="button">
+            Close
+          </button>
+        </div>
+        <form id="apiConfigForm">
+          <div class="form-group">
+            <label for="apiBaseInput">Backend API Base</label>
+            <input id="apiBaseInput" type="text" required />
+          </div>
+          <button class="btn btn-primary" type="submit">Save Endpoint</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

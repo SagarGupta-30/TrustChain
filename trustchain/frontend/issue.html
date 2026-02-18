@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Issue Proof | TrustChain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="issue">
+    <div class="site-shell">
+      <header class="topbar glass rounded-xl fade-in">
+        <a class="brand" href="index.html"
+          >Trust<span class="brand-mark">Chain</span></a
+        >
+        <nav class="nav-links">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link active" href="issue.html">Issue Proof</a>
+          <a class="nav-link" href="verify.html">Verify</a>
+          <a class="nav-link" href="dashboard.html">Dashboard</a>
+        </nav>
+        <div class="endpoint-block">
+          <span>API:</span>
+          <span id="apiEndpointBadge" class="endpoint-value"></span>
+          <button id="apiConfigButton" class="btn btn-ghost" type="button">
+            API Settings
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="page-header glass rounded-xl fade-in delay-1">
+          <h1>Issue a Digital Proof</h1>
+          <p>
+            Upload a document, anchor its SHA256 hash on Algorand TestNet, and
+            mint an ASA proof NFT in one flow.
+          </p>
+        </section>
+
+        <section class="page-content two-col">
+          <article class="card glass rounded-xl fade-in delay-1">
+            <h2>Upload File</h2>
+            <p>Supported types include certificates, contracts, images, and documents.</p>
+            <form id="issueForm" novalidate>
+              <div class="form-group">
+                <label for="issueFile">Select file</label>
+                <input id="issueFile" type="file" name="file" required />
+              </div>
+              <div class="form-group">
+                <label for="issueLabel">Reference label (optional)</label>
+                <input
+                  id="issueLabel"
+                  type="text"
+                  name="label"
+                  placeholder="Example: Vendor contract"
+                />
+              </div>
+              <button id="issueSubmit" class="btn btn-primary" type="submit">
+                Issue Proof
+              </button>
+              <p class="form-note">
+                TrustChain computes the hash server-side and records proof details on
+                Algorand TestNet.
+              </p>
+              <div id="issueStatus" class="inline-status" aria-live="polite"></div>
+            </form>
+          </article>
+
+          <article class="card glass rounded-xl fade-in delay-2">
+            <h2>Issued Proof</h2>
+            <p>Transaction and asset IDs are generated after successful confirmation.</p>
+
+            <div id="issueResult" class="result-card hidden">
+              <h3>Proof Created</h3>
+              <div class="result-list">
+                <div class="result-item">
+                  <span>SHA256 Hash</span>
+                  <code id="issuedHash">-</code>
+                </div>
+                <div class="result-item">
+                  <span>Transaction ID</span>
+                  <code id="issuedTxId">-</code>
+                </div>
+                <div class="result-item">
+                  <span>Asset ID</span>
+                  <code id="issuedAssetId">-</code>
+                </div>
+              </div>
+            </div>
+
+            <div id="issueEmpty" class="empty-state">
+              No proof issued in this session yet.
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <footer class="footer">TrustChain issuance flow on Algorand TestNet</footer>
+    </div>
+
+    <div id="apiConfigModal" class="modal" aria-hidden="true">
+      <div class="modal-panel glass rounded-xl">
+        <div class="modal-header">
+          <h3>API Endpoint</h3>
+          <button id="closeApiModal" class="btn btn-ghost" type="button">
+            Close
+          </button>
+        </div>
+        <form id="apiConfigForm">
+          <div class="form-group">
+            <label for="apiBaseInput">Backend API Base</label>
+            <input id="apiBaseInput" type="text" required />
+          </div>
+          <button class="btn btn-primary" type="submit">Save Endpoint</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
