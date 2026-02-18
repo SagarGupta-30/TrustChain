@@ -141,19 +141,21 @@ After deploy, note your backend URL (for example `https://your-backend.onrender.
 ## 3. Frontend on Vercel
 
 1. Import the GitHub repo in Vercel.
-2. Set Root Directory to: `trustchain/frontend`
+2. Set Root Directory to the repository root (default).
 3. Framework preset: `Other`
 4. Build command: none
 5. Output directory: `.`
+6. Add Vercel environment variables from `trustchain/backend/.env.example`:
+   - `ALGOD_SERVER`, `ALGOD_TOKEN`, `ALGOD_PORT`
+   - `INDEXER_SERVER`, `INDEXER_TOKEN`, `INDEXER_PORT`
+   - `ALGORAND_MNEMONIC`
+   - `ALLOWED_ORIGIN=*`, `MAX_FILE_SIZE_MB`, `ISSUE_MIN_RECOMMENDED_MICROALGOS`
 
-After deploy:
-- Open the frontend
-- Click **API Settings**
-- Set API base to: `https://your-backend.onrender.com/api`
+This repo includes:
+- root `vercel.json` routes for frontend pages
+- root `api/[...path].js` serverless function that serves TrustChain backend API on `/api/*`
 
-Optional for global public routing:
-- Configure Vercel rewrite rule so `/api/*` proxies to your Render backend.
-- With rewrite configured, users do not need to set API endpoint manually.
+So frontend and backend run together on one Vercel project.
 
 ## Production Checklist
 

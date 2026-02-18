@@ -117,6 +117,10 @@ app.use((err, _req, res, _next) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`TrustChain backend is running on port ${port}`);
-});
+module.exports = app;
+
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`TrustChain backend is running on port ${port}`);
+  });
+}
